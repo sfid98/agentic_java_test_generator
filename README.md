@@ -35,3 +35,41 @@ graph TD
     style Analyst fill:#e1f5fe,stroke:#01579b
     style Dev fill:#fff3e0,stroke:#ff6f00
     style Runner fill:#e8f5e9,stroke:#1b5e20
+
+## 🔍 End-to-End Example: From Specs to Code
+
+Here is a real-world example demonstrating how the **Agentic Framework** translates raw business requirements into executable test logic.
+
+### 1. The Input (`specs/requirements.md`)
+The QA Analyst Agent reads the functional specification provided by the business stakeholders:
+
+> **1. Inventory Management**
+> Before accepting an order, the system MUST verify that all items are available.
+> If even a single item is missing (**checkStock returns false**), the entire process must terminate by **throwing an IllegalStateException** containing the missing product code. [...]
+
+### 2. The Output (Generated JUnit Code)
+The SDET Agent interprets "terminate process" and "single item missing" to generate a **Short-Circuit Test Pattern**. It understands that if the first call fails, no further interactions with the system should occur.
+
+```java
+@Test
+@DisplayName("S1 – throws when first item stock is missing")
+void testStockMissingFirstItemThrowsException() {
+    // ARRANGE: Setup data derived from the Requirement context
+    OrderItem first = new OrderItem("SKU-A", 2);
+    OrderItem second = new OrderItem("SKU-B", 1);
+    Order order = new Order("id", new Customer("user@example.com", false), List.of(first, second), 50.0);
+
+    // MOCKING: Simulate "checkStock returns false" behavior
+    when(inventory.checkStock("SKU-A", 2)).thenReturn(false);
+
+    // ACT & ASSERT: Verify the "IllegalStateException" rule
+    assertThatThrownBy(() -> processor.processOrder(order))
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("SKU-A"); // Verifies the "missing product code" requirement
+
+    // VERIFICATION: Ensure strict boundary compliance (No side effects)
+    verify(inventory).checkStock("SKU-A", 2);
+    
+    // Critical: Proves the process "terminated" immediately as requested
+    verifyNoMoreInteractions(inventory, payment, shipping);
+}
