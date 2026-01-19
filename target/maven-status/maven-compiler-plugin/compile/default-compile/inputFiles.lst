@@ -1,0 +1,7 @@
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/model/Order.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/ports/PaymentGateway.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/ports/ShippingService.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/ports/InventoryService.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/service/OrderProcessor.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/model/OrderItem.java
+/Users/stanislao/Desktop/java_test_creator/src/main/java/com/ecommerce/order/model/Customer.java
