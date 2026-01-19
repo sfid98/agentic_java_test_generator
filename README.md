@@ -35,6 +35,10 @@ graph TD
     style Analyst fill:#e1f5fe,stroke:#01579b
     style Dev fill:#fff3e0,stroke:#ff6f00
     style Runner fill:#e8f5e9,stroke:#1b5e20
+```
+
+---
+
 
 ## 🔍 End-to-End Example: From Specs to Code
 
@@ -73,3 +77,4 @@ void testStockMissingFirstItemThrowsException() {
     // Critical: Proves the process "terminated" immediately as requested
     verifyNoMoreInteractions(inventory, payment, shipping);
 }
+```
