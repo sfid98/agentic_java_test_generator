@@ -1,0 +1,4 @@
+com/ecommerce/order/service/OrderProcessorTest.class
+com/ecommerce/order/service/OrderProcessorTest$OrderBuilder.class
+com/ecommerce/order/service/OrderProcessorTest$CustomerBuilder.class
+com/ecommerce/order/service/OrderProcessorTest$OrderItemBuilder.class

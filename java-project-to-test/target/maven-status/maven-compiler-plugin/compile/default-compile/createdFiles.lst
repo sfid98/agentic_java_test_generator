@@ -1,0 +1,7 @@
+com/ecommerce/order/ports/PaymentGateway.class
+com/ecommerce/order/model/OrderItem.class
+com/ecommerce/order/ports/InventoryService.class
+com/ecommerce/order/service/OrderProcessor.class
+com/ecommerce/order/model/Order.class
+com/ecommerce/order/model/Customer.class
+com/ecommerce/order/ports/ShippingService.class
