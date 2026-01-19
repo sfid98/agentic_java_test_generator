@@ -2,7 +2,7 @@ import os
 import subprocess
 import re
 
-JAVA_PROJECT_ROOT = "./"
+JAVA_PROJECT_ROOT = "./java-project-to-test"
 
 def read_file(file_path: str) -> str:
     """Read a file (requirements or code). Path relative to the script or the java project."""

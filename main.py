@@ -6,7 +6,7 @@ MODEL_ID = "gpt-oss:120b-cloud"
 MAX_RETRIES = 3
 
 REQ_FILE = "specs/requirements.md"
-SERVICE_CLASS = "src/main/java/com/ecommerce/order/service/OrderProcessor.java"
+SERVICE_CLASS = "java-project-to-test/src/main/java/com/ecommerce/order/service/OrderProcessor.java"
 
 async def main():
     client = OllamaChatClient(model_id=MODEL_ID)
@@ -39,7 +39,7 @@ async def main():
         - Correctly handle mock return types (e.g., `when(...).thenReturn(...)`).
         - Correctly import classes (e.g., `com.ecommerce.order.model.*`).
         
-        When asked to fix an error, analyze Maven logs and rewrite the entire file.
+        When asked to fix an error, analyze Maven logs and rewrite the entire file. 
         """,
         tools=[read_java_file, save_test_file]
     )
