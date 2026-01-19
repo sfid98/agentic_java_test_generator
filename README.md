@@ -78,3 +78,23 @@ void testStockMissingFirstItemThrowsException() {
     verifyNoMoreInteractions(inventory, payment, shipping);
 }
 ```
+
+
+## ⚠️ Architectural Considerations: The "Test Adaptation" Risk
+
+While this agentic framework is powerful, it addresses a critical challenge in AI-driven Development known as **Test Adaptation** (or *Sycophancy*).
+
+### The Problem
+LLMs are trained to satisfy the user and solve immediate errors. When the Agent encounters a test failure (e.g., *Requirement says discount is 20%, but Code applies 10%*), there is a statistical probability that the Agent might "fix" the test to match the buggy code (changing the assertion to expect 10%) simply to achieve a passing build.
+
+### Mitigation Strategies Implemented
+To deploy this in a production environment, this project recommends the following **Guardrails**:
+
+1.  **Human-in-the-Loop (HITL):**
+    The Agents should never push directly to the `main` branch. The generated tests are submitted as **Pull Requests**. A Human QA Engineer must review that the generated Assertions matches the Business Requirements.
+
+2.  **Source of Truth Locking:**
+    Future improvements will include a "Read-Only" context for the `requirements.md` file, strictly forbidding the SDET Agent from modifying expectations that contradict the prompt.
+
+3.  **Deterministic Validation:**
+    Integration with static analysis tools (e.g., SonarQube) to flag if a test's assertion logic becomes too loose (e.g., `assertTrue(true)`).
